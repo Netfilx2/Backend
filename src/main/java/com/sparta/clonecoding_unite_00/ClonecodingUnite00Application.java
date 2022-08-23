@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-//@EnableScheduling // 스케줄러 시작
+@EnableScheduling // 스케줄러 시작
 @EnableJpaAuditing // timestamped 적용
 @SpringBootApplication
 public class ClonecodingUnite00Application {

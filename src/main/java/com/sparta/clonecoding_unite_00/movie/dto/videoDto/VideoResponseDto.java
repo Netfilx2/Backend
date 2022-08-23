@@ -20,4 +20,5 @@ public class VideoResponseDto { // 출력되는 형식.
     private String youtubePath;
     private String backdrop_path;
     private String homepage;
+    private Integer likeCnt;
 }

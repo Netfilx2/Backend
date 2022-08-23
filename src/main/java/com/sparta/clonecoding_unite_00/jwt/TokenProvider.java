@@ -2,13 +2,11 @@ package com.sparta.clonecoding_unite_00.jwt;
 
 
 
-import com.sparta.clonecoding_unite_00.jwt.domain.RefreshToken;
 import com.sparta.clonecoding_unite_00.jwt.dto.TokenDto;
 import com.sparta.clonecoding_unite_00.jwt.utils.Authority;
 import com.sparta.clonecoding_unite_00.member.doamin.Member;
 import com.sparta.clonecoding_unite_00.movie.repository.RefreshTokenRepository;
 import com.sparta.clonecoding_unite_00.security.userdetail.UserDetailsImpl;
-import com.sparta.clonecoding_unite_00.utils.ResponseDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -18,11 +16,9 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.Optional;
 
 @Slf4j
 @Component

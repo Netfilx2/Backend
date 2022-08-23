@@ -90,6 +90,7 @@ public class VideoServiceCollabor implements VideoService{
                         .backdrop_path(video.getBackdrop_path())
                         .homepage(video.getHomepage())
                         .grade(video.getPopularity())
+                        .likeCnt(video.getLikeCnt())
                         .build()
 
         );
@@ -253,7 +254,7 @@ public class VideoServiceCollabor implements VideoService{
         }
 
         VideoResponseDto newVideoResponseDto = new VideoResponseDto(genre, video.getId(), video.getTitle(), video.getPosterPath(), video.getOverview(),
-                video.getRelease_date(), video.getVote_average(), video.getYoutubePath(), video.getBackdrop_path(), video.getHomepage());
+                video.getRelease_date(), video.getVote_average(), video.getYoutubePath(), video.getBackdrop_path(), video.getHomepage(), video.getLikeCnt());
         return newVideoResponseDto;
     }
 
