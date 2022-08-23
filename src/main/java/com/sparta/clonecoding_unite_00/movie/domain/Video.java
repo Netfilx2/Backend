@@ -51,6 +51,9 @@ public class Video {
     @Column
     private String backdrop_path;
 
+    @Column
+    private int likeCnt;
+
     @OneToMany(mappedBy = "video",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<VideoSmallCategory> videoSmallCategoryList = new ArrayList<>();
 
@@ -58,6 +61,11 @@ public class Video {
     @JsonIgnore
     @JoinColumn(name = "largeCategoryId")
     private LargeCategory largeCategory;
+
+
+    public void likeCnt(Integer likeCnt){
+        this.likeCnt = likeCnt;
+    }
 
 
 

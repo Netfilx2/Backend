@@ -1,7 +1,6 @@
 package com.sparta.clonecoding_unite_00.utils;
 
 
-import com.sparta.clonecoding_unite_00.member.dto.resposnedto.MemberResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -3,10 +3,10 @@ package com.sparta.clonecoding_unite_00.movie.controller;
 
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.MovieDto;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.TVDto;
-import com.sparta.clonecoding_unite_00.utils.ResponseDto;
 import com.sparta.clonecoding_unite_00.movie.dto.categoryDto.LargeCategoryDto;
 import com.sparta.clonecoding_unite_00.movie.service.VideoService;
 import com.sparta.clonecoding_unite_00.jwt.utils.TokenCheck;
+import com.sparta.clonecoding_unite_00.utils.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
