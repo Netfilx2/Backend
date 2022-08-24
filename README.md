@@ -40,7 +40,7 @@
 [figma로 열기](https://www.figma.com/file/dapEFyHroe0F7veKdijnio/Mini-Project?node-id=0%3A1)
 <br>
 
-[노션으로 열기]([https://www.notion.so/5-abb0b2421aa6449abd1b7a4251a9e819](https://www.notion.so/2-264b9001bbcc4d58a0c1a63ae6f4e369))
+[노션으로 열기](https://www.notion.so/2-264b9001bbcc4d58a0c1a63ae6f4e369)
 
 </div>
 </details>
