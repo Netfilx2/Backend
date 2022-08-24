@@ -1,13 +1,14 @@
-![logo](https://user-images.githubusercontent.com/109033607/185214064-b9bb56c9-b2e1-4532-b0ec-3fd59c722075.png)
+![1](https://user-images.githubusercontent.com/67058000/186458930-d71285c5-1ceb-4ecc-9d04-235b145e98ba.png)
+
+
 ##
 ### 🙌 프로젝트 소개
 
-영화, 드라마, 예능을 리뷰하는 사이트입니다.
-컨텐츠를 보고 별점과 코멘트를 남겨주세요.
+넷플릭스 클론 코딩
 
 
 ### 🗓 프로젝트 기간
-2022년 08월 11일 ~ 2022년 8월 18일 (1주)
+2022년 08월 19일 ~ 2022년 8월 25일 (1주)
 
 ### ⚒️ 프로젝트 아키텍처
 
@@ -24,8 +25,8 @@
 ### 😎 백엔드 팀원 소개
 이름 | 깃허브 주소 |
 ---|---|
-이길종	| https://github.com/Jongleee
-이장원 |	https://github.com/wkddnjs
+이길종	| 
+이장원 |	
 한동훈 | https://github.com/hdonghun
 
 ### 📚 와이어 프레임 / API 명세서
