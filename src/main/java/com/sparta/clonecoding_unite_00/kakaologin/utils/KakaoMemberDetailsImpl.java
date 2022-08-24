@@ -1,7 +1,7 @@
-package com.sparta.clonecoding_unite_00.kakao;
-
+package com.sparta.clonecoding_unite_00.kakaologin.utils;
 
 import com.sparta.clonecoding_unite_00.jwt.utils.Authority;
+import com.sparta.clonecoding_unite_00.kakaologin.doamain.KakaoMember;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,18 +15,16 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KakaoDetails implements UserDetails {
+public class KakaoMemberDetailsImpl implements UserDetails {
 
     private KakaoMember kakaoMember;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(Authority.ROLE_MEMBER.toString());
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(authority);
         return authorities;
-
     }
 
     @Override
@@ -59,4 +57,3 @@ public class KakaoDetails implements UserDetails {
         return true;
     }
 }
-

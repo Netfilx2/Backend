@@ -1,4 +1,4 @@
-package com.sparta.clonecoding_unite_00.kakao;
+package com.sparta.clonecoding_unite_00.kakaologin.doamain;
 
 import com.sparta.clonecoding_unite_00.member.doamin.Timestamped;
 import lombok.AllArgsConstructor;
@@ -21,25 +21,22 @@ public class KakaoMember extends Timestamped {
     private Long id;
 
     @Column(nullable = false)
-    private String loginId;
+    private String email;
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private String nickname;
 
-    @Column(unique = true)
-    private Long kakaoId;
-
     public boolean validatePassword(PasswordEncoder passwordEncoder, String password) {
         return passwordEncoder.matches(password, this.password);
     }
 
-    public KakaoMember(String nickname, String password, String loginId, Long kakaoId) {
+    public KakaoMember(String nickname, String password, String email) {
         this.nickname = nickname;
         this.password = password;
-        this.loginId = loginId;
-        this.kakaoId = kakaoId;
+        this.email = email;
+
     }
 
 
