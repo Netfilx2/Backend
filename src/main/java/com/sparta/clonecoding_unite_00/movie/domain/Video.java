@@ -1,13 +1,13 @@
 package com.sparta.clonecoding_unite_00.movie.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.drama.TheDramaApiResponseResultList;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.movie.TheMovieApiResponseResultList;
 import com.sparta.clonecoding_unite_00.movie.dto.videoDto.VideoListResult;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -52,7 +52,12 @@ public class Video {
     private String backdrop_path;
 
     @Column
+    @ColumnDefault("0")
     private int likeCnt;
+
+    public void likeCnt(Integer likeCnt){
+        this.likeCnt = likeCnt;
+    }
 
     @OneToMany(mappedBy = "video",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<VideoSmallCategory> videoSmallCategoryList = new ArrayList<>();
@@ -61,11 +66,6 @@ public class Video {
     @JsonIgnore
     @JoinColumn(name = "largeCategoryId")
     private LargeCategory largeCategory;
-
-
-    public void likeCnt(Integer likeCnt){
-        this.likeCnt = likeCnt;
-    }
 
 
 
