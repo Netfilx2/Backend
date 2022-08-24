@@ -1,25 +1,30 @@
 package com.sparta.clonecoding_unite_00.movie.controller;
 
 
+import com.sparta.clonecoding_unite_00.jwt.utils.TokenCheck;
+import com.sparta.clonecoding_unite_00.movie.dto.categoryDto.LargeCategoryDto;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.MovieDto;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.TVDto;
-import com.sparta.clonecoding_unite_00.movie.dto.categoryDto.LargeCategoryDto;
+import com.sparta.clonecoding_unite_00.movie.repository.VideoRepository;
 import com.sparta.clonecoding_unite_00.movie.service.VideoService;
-import com.sparta.clonecoding_unite_00.jwt.utils.TokenCheck;
 import com.sparta.clonecoding_unite_00.utils.ResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class VideoController {
 
     private final VideoService videoService;
 
+    private VideoRepository videoRepository;
+
     private final TokenCheck tokenCheck;
+
 
     @GetMapping("/auth/movie")
     public ResponseDto getMovie(HttpServletRequest request) {
@@ -34,6 +39,7 @@ public class VideoController {
 
     }
 
+    // 영화 상세보기.
     @RequestMapping(value = "/auth/movie/{id}", method = RequestMethod.GET)
     public ResponseDto<?> detailMovie(@PathVariable Long id,
                                                       HttpServletRequest request) {
@@ -58,6 +64,23 @@ public class VideoController {
         LargeCategoryDto result = videoService.getTvShow(request);
 
         return new ResponseDto(200, "성공", result);
+    }
+
+
+    //api 수정함 영화 검색.
+    @RequestMapping(value = "movie/search", method = {RequestMethod.GET})
+    public ResponseDto<?> movieSearch(@RequestParam String query) {
+
+        log.info(query);
+
+        //query = URLDecoder.decode(query, "utf-8");
+
+        String result = videoService.movieSearch(query);
+
+        log.info(result);
+
+        return videoService.moiveItem(result);
+
     }
 
 
