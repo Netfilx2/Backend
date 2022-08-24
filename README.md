@@ -26,7 +26,7 @@
 이름 | 깃허브 주소 |
 ---|---|
 박민준	| 
-류지우 |	
+류지우 |	https://github.com/pmjn1025
 한동훈 | https://github.com/hdonghun
 
 ### 📚 와이어 프레임 / API 명세서
