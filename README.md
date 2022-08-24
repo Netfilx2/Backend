@@ -35,10 +35,6 @@
 <summary>여기를 눌러주세요</summary>
 <div markdown="1">
 
-<br>
-  
-[figma로 열기](https://www.figma.com/file/dapEFyHroe0F7veKdijnio/Mini-Project?node-id=0%3A1)
-<br>
 
 [노션으로 열기](https://www.notion.so/2-264b9001bbcc4d58a0c1a63ae6f4e369)
 
