@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface SmallCategoryRepository extends JpaRepository<SmallCategory, Long> {
     public SmallCategory findBySmallCategoryName(String SmallCategory);
     public List<SmallCategory> findAllBySmallCategoryName(String SmallCategory);
