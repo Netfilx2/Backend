@@ -144,45 +144,8 @@ ERD를 참고하여 작성했지만 연관관계, oneTomany와 manyToOne에 대�
  <br>
  
  
- ```java
-public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
- http
-          .cors().configurationSource(corsConfigurationSource());
-          ...후략...
-```
+ 하나 둘셋
 
-```java
- @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-       final CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://3.37.127.16:8080"));
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedHeader("Authorization");
-        configuration.addAllowedMethod("*");
-        configuration.setAllowCredentials(true);
-        configuration.setMaxAge(3600L); //preflight 결과를 1시간동안 캐시에 저장
-        configuration.addExposedHeader("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-```    
-위와 같이 필터 부분에 cors설정을 해주고 마찬가지로 필터 부분에 아래의 Bean을 추가하였으나 cors에러가 해결되지 않았다. 
-
-이유는 configure 파트에서 H2console 사용을 위해 추가해놓은 Bean 때문
-사실 이유는 모르는데 주석처리하니까 됨 아마 충돌 문제일듯
-```java
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
-//        return (web) -> web.ignoring()
-//                .antMatchers("/h2-console/**")
-//                .antMatchers("/api/members/**")
-//                .antMatchers("/favicon.ico");
-//
-//    }
-```
  <br>
  <br>
  <br>
