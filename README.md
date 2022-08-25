@@ -114,34 +114,14 @@
 <div markdown="1">
  <br>
  
-      - 카카오 로그인 같은 경우에는 실제 api 호출이 필요하여 서버를 열어두는 과정이 필요함
-      - 이 과정에서 백엔드와 프론트 사이를 왔다갔다 하는 부분에서 문제가 발생함
-      - 디버깅을 할 수 없기 때문에 우분투를 열어두고 오류를 찾아서 해결하는 방식을 사용함 
+      - 기존의 프로젝트에 패키지 구성에 깔끔하지 못하고, 찾고자 하는 데이터에 대한 정리가 잘 되지 않은 것을 느끼고, 프로젝트를 계속 진행하면서 패키지를 어떻게 구성할 것인가에 고민이 생겼다. 프로젝트의 패키지 구성은 계층별, 기능별 구성으로 나눌 수 있다. 
  
 <br>  
  
-    1.KOE320
-    - 로그인 요청 여러번 되는 경우 
+    1.기능별로 나누고 계층별로 나누기 
+    - 클래스의 기능과 역할에 따라서 패키지를 구성하는 것이다. 예를 들어 User의 정보를 관여하는 패키지를 구성한다면, User패키지 안에 UserEntity, UserService, UserDTO, UserRepository가 포함되어 구성되게 된다. 프로젝트가 커질수록 패키지 안의 클래스 수가 증가하기 때문에 기능별 구성이 재사용성이 좋고 Package Principle을 잘 지키기는 이점이 있어 많이 사용된다. 
 
-    2.KOE303
-    - 인가 코드 요청 시 사용한 redirect_uri 와 액세스 토큰 요청 시 사용한 redirect_uri 가 다른 경우
-    - 백엔드와 프론트에서 같은 uri를 사용해 주어야 함
-
-    3.이미 로그인 처리가 된 경우
-    - 로그인 과정에 인증 코드가 발급된 경우 로그인 한 것으로 간주하므로 계정 연결을 지워줄 필요성이 있음 
-    -> 카카오 계정 관리 페이지 https://accounts.kakao.com/weblogin/account/partner
-
-    4.카카오에서 제공하는 정보와 변수명
-     <br>
-     ![](https://velog.velcdn.com/images/jongleee/post/b69022cd-299e-492d-922f-70683d658bb9/image.png)
-     <br>
-    ```java
-    String nickname = jsonNode.get("properties")
-                  .get("nickname").asText();
-          String loginId = jsonNode.get("kakao_account")
-                  .get("email").asText();
-    ```
-    의 형태로 닉네임과 이메일을 받아올 수 있음
+   
  <br>
  <br>
  <br>
