@@ -133,7 +133,8 @@
 </details>
  
 
-#### 2. CORS문제 설정 다 했음에도 안됨
+#### 2. 좋아요 기능
+	
 <details>
 <summary>해결방안</summary>
 <div markdown="1">
