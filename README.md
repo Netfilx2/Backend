@@ -367,8 +367,8 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
 
 #### 📖 새로 적용해본 기술
-- OAuth 2.0을 통한 소셜 로그인
- 
- 
-개선해야할 사항
+- Pagination
+- themoviedb오픈API 
+- 네이버 검색 API
+- 카카오소셜로그인
 
