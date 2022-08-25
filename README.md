@@ -45,8 +45,9 @@
 ### 프로젝트의 패키지 구성
 
 ├── 🗂backend
-   ├── member
-	    |   ├── controller
+   ├── member  
+   
+          |   ├── controller
 
   	  |    |   └──  MemberContorller
 
@@ -62,8 +63,9 @@
    
    	 |    |   └──  MemberRespository
 
-   ├── movie
-	 	  |   ├── controller
+   ├── movie  
+   
+	  |   ├── controller
 
   	  |    |   └──  MovieContorller
 
