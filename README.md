@@ -42,6 +42,47 @@
 </details>
 <br>
 
+### 프로젝트의 패키지 구성
+
+├── 🗂backend
+   ├── member
+	    |   ├── controller
+
+  	  |    |   └──  MemberContorller
+
+   	 |   ├── domain
+
+  	  |    |   └──  Member
+
+  	  |   ├── service
+
+   	 |    |   └──  MemberService
+ 
+   	 |   ├── repository
+   
+   	 |    |   └──  MemberRespository
+
+   ├── movie
+	 	  |   ├── controller
+
+  	  |    |   └──  MovieContorller
+
+  	  |   ├── domain
+
+  	  |    |   └──  Movie
+
+  	  |   ├── service
+
+  	  |    |   └──  MovieService
+ 
+  	  |   ├── repository
+   
+  	  |    |   └──  MovieRespository  
+     
+     ...
+
+
+
 ### ✨ 핵심 기능
 
 1. 로그인, 회원가입
