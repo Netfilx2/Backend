@@ -212,15 +212,13 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 - 2번에서 문제가 발생함.
 
 ### 문제가 발생한 이유.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/84d67f9a-78ef-4c6e-a2b0-2f80ac160bca/Untitled.png)
+![image](https://user-images.githubusercontent.com/67058000/186611356-83b25029-b8db-4456-acdf-1c76dd3c1e34.png)
 
 - JpaRepository를 상속받은 Repository는 페이징관련 Repository도 상속받아서 db에서 가져올때 페이징한 데이터를 분류해서 가져올 수 있다.
 - 그런데 나는 Pageable만 사용했는데 이 Pageable만 사용했지 해당 분류내용을 내가 지정하지 않았던 것이다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1fb1b063-1703-4bee-9af9-28ed6a1a99f5/Untitled.png)
+![image](https://user-images.githubusercontent.com/67058000/186611643-207b1f30-0f53-4cc1-bf72-f379af6fe3ac.png)
 
-- 아...
 - 따라서 해당 분류된 내용을 지정하지 않았으니 null이 되고 nullpointException이 발생한 것이었다.
 
 ### 문제 해결
