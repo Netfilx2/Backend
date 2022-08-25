@@ -43,6 +43,19 @@ URL : http://2netflix.s3-website.ap-northeast-2.amazonaws.com/
 </details>
 <br>
 
+### 📚 대시보드
+<details>
+<summary>여기를 눌러주세요</summary>
+<div markdown="1">
+
+
+[대시보드 열기]([https://www.notion.so/2-264b9001bbcc4d58a0c1a63ae6f4e369](https://docs.google.com/spreadsheets/d/1rRX0m5w0_CEWnZuCILdxgNbrrmcJQRzBm1EeOrlIGmk/edit#gid=1976344496))
+
+</div>
+</details>
+<br>
+
+
 ### 프로젝트의 패키지 구성
 
 ├── 🗂backend  
