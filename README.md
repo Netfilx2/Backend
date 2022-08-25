@@ -44,20 +44,21 @@
 
 ### 프로젝트의 패키지 구성
 
-├── 🗂backend
-   ├── member  
+├── 🗂backend  
+
+          ├── member  
    
           |   ├── controller
 
   	  |    |   └──  MemberContorller
 
-   	 |   ├── domain
+   	  |   ├── domain
 
   	  |    |   └──  Member
 
   	  |   ├── service
 
-   	 |    |   └──  MemberService
+   	  |    |   └──  MemberService
  
    	 |   ├── repository
    
