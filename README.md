@@ -138,20 +138,26 @@
 <details>
 <summary>해결방안</summary>
 <div markdown="1">
- <br>
-
-ERD를 참고하여 작성했지만 연관관계, oneTomany와 manyToOne에 대한 각각 이해가 부족해, 에러가 발생하였음
- <br>
+	 <br>
  
- 
- 하나 둘셋
+      - - ERD를 참고하여 작성했지만 연관관계, oneTomany와 manyToOne에 대한 각각 이해가 부족해, 에러가 발생하였음 
+	![image](https://user-images.githubusercontent.com/67058000/186609434-4573b461-36ca-4158-b062-9f04fd0fd500.png)
 
+ 
+<br>  
+ OneToMany(1 : N) 를 사용시 : 참조값 Like가 여러 movie에 적용된다 생각해 OneToMany를 적용시켜봄  
+
+	⇒ 연관관계 재확인 및 수정 후 재실행시 비디오 전체에 좋아요 카운트 증가
+
+ ManyToOne(N : 1) 사용 : 여러 movie를 좋아요 할 수 있고 고유 계정으로 하나의 영화에만 좋아요 가능
+
+	⇒ 어떤 엔티티를 중심으로 상대 엔티티를 바라보느냐에 따라 다중성이 다른게 됨
  <br>
  <br>
  <br>
 
 </details>
- 
+	
  
 #### 3. 깃허브 충돌 문제
 <details>
