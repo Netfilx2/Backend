@@ -2,8 +2,6 @@ package com.sparta.clonecoding_unite_00.jwt;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 import com.sparta.clonecoding_unite_00.security.userdetail.UserDetailsServiceImpl;
 import com.sparta.clonecoding_unite_00.utils.ResponseDto;
 import io.jsonwebtoken.Claims;

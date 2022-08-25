@@ -81,12 +81,11 @@ public class  SecurityConfiguration{
         .and()
         .authorizeRequests()
         .antMatchers("/member/**").permitAll()
+        .antMatchers("/video/search").permitAll()
         .antMatchers("/images/**").permitAll()
         .antMatchers("/css/**").permitAll()
 
         // 첫화면이 로그인 화면이 아니기때문에 권한 헤제하기.
-
-
 //        .antMatchers("/").permitAll()
 //        .antMatchers("/**").permitAll()
 

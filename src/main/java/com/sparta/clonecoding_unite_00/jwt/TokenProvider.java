@@ -4,7 +4,6 @@ package com.sparta.clonecoding_unite_00.jwt;
 
 import com.sparta.clonecoding_unite_00.jwt.dto.TokenDto;
 import com.sparta.clonecoding_unite_00.jwt.utils.Authority;
-
 import com.sparta.clonecoding_unite_00.kakaologin.doamain.KakaoMember;
 import com.sparta.clonecoding_unite_00.member.doamin.Member;
 import com.sparta.clonecoding_unite_00.movie.repository.RefreshTokenRepository;
@@ -63,28 +62,6 @@ public class TokenProvider {
         .build();
 }
 
-// 카카오
-//엑세스 토큰 발급
-public TokenDto generateTokenDto(KakaoMember kakaoMember) {
-  long now = (new Date().getTime());
-
-  Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
-  String accessToken = Jwts.builder()
-          // 엑세스토큰 안에 집어 넣을 수 있는 거.
-          .setSubject(kakaoMember.getNickname())
-          .claim(AUTHORITIES_KEY, Authority.ROLE_MEMBER.toString())
-          .setExpiration(accessTokenExpiresIn)
-          .signWith(key, SignatureAlgorithm.HS256)
-          //jwts 빌더 패턴을 사용하면 .compact();로 끝난다.
-          .compact();
-
-  return TokenDto.builder()
-          .grantType(BEARER_PREFIX)
-          .accessToken(accessToken)
-          .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
-          .build();
-}
-
   public TokenDto generateKakaoTokenDto(KakaoMember kakaoMember) {
     long now = (new Date().getTime());
 
@@ -104,6 +81,7 @@ public TokenDto generateTokenDto(KakaoMember kakaoMember) {
             .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
             .build();
   }
+
 
   //@AuthenticationPrincipal
   public Member getMemberFromAuthentication() {
