@@ -112,5 +112,4 @@ public class VideoController {
         return new ResponseDto(200, "성공", result);
     }
 
-
 }

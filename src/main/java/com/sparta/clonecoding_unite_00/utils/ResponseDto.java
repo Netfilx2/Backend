@@ -54,6 +54,6 @@ public class ResponseDto<T> {
 
 
     public static ResponseDto<?> successToMessage(int i, String some, Object t) {
-        return new ResponseDto<>(200, "OK", "로그아웃 성공");
+        return new ResponseDto<>(200, "OK", t);
     }
 }

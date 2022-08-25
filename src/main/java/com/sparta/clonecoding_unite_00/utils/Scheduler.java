@@ -1,35 +1,23 @@
 package com.sparta.clonecoding_unite_00.utils;
 
 
-
-import com.sparta.clonecoding_unite_00.movie.utils.DramaGenre;
-
-import com.sparta.clonecoding_unite_00.movie.utils.MovieGenre;
-
-import com.sparta.clonecoding_unite_00.movie.utils.MovieSearchApi;
-
+import com.sparta.clonecoding_unite_00.movie.domain.LargeCategory;
+import com.sparta.clonecoding_unite_00.movie.domain.SmallCategory;
+import com.sparta.clonecoding_unite_00.movie.domain.Video;
+import com.sparta.clonecoding_unite_00.movie.domain.VideoSmallCategory;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.drama.TheDramaApiGenreResponseDto;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.drama.TheDramaApiResponseResultList;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.movie.TheMovieApiByGenreResponseDto;
-import com.sparta.clonecoding_unite_00.movie.dto.genreDto.movie.TheMovieApiResponseResultList;
 import com.sparta.clonecoding_unite_00.movie.dto.genreDto.movie.TheMovieApiByIdResponseDto;
+import com.sparta.clonecoding_unite_00.movie.dto.genreDto.movie.TheMovieApiResponseResultList;
 import com.sparta.clonecoding_unite_00.movie.dto.videoDto.VideoListResult;
-import com.sparta.clonecoding_unite_00.movie.domain.LargeCategory;
-
-import com.sparta.clonecoding_unite_00.movie.domain.SmallCategory;
-
-import com.sparta.clonecoding_unite_00.movie.domain.Video;
-
-import com.sparta.clonecoding_unite_00.movie.domain.VideoSmallCategory;
-
-
 import com.sparta.clonecoding_unite_00.movie.repository.LargeCategoryRepository;
-
 import com.sparta.clonecoding_unite_00.movie.repository.SmallCategoryRepository;
-
 import com.sparta.clonecoding_unite_00.movie.repository.VideoRepository;
-
 import com.sparta.clonecoding_unite_00.movie.repository.VideoSmallCategoryRepository;
+import com.sparta.clonecoding_unite_00.movie.utils.DramaGenre;
+import com.sparta.clonecoding_unite_00.movie.utils.MovieGenre;
+import com.sparta.clonecoding_unite_00.movie.utils.MovieSearchApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
