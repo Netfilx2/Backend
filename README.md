@@ -350,35 +350,21 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
  <br>
 </details>
 
-#### 4. 양쪽 클래스에서 서로 참조하는 경우 순환오류 발생
+#### 4. 하나 더 적자 
 <details>
 <summary>해결방안</summary>
 <div markdown="1">
  <br>
-상호 참조 하는 경우를 만들지 말자
+ 
+ 하나 더 적자!
  <br>
  <br>
 
 </details>
 
-#### 5. 이미지 업로드시 기본 용량 제한이 1MB여서 문제가 발생함
-<details>
-<summary>해결방안</summary>
-<div markdown="1"> 
- <br>
-application.properties 파일에
- 
- 
-```java
-spring.servlet.multipart.maxFileSize=10MB
-spring.servlet.multipart.maxRequestSize=10MB
- ```
 
- 와 같이 제한을 설정할 수 있음
- <br>
- <br>
- <br>
-</details>
+
+
 
 #### 📖 새로 적용해본 기술
 - OAuth 2.0을 통한 소셜 로그인
