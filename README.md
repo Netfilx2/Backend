@@ -123,7 +123,7 @@
     - 클래스의 기능과 역할에 따라서 패키지를 구성하는 것이다. 
 	예를 들어 User의 정보를 관여하는 패키지를 구성한다면, User패키지 안에 UserEntity, UserService, UserDTO, UserRepository가 포함되어 구성되게 된다. 
 	프로젝트가 커질수록 패키지 안의 클래스 수가 증가하기 때문에 기능별 구성이 재사용성이 좋고 Package Principle을 잘 지키기는 이점이 있어 많이 사용된다. 
-	![image](https://user-images.githubusercontent.com/67058000/186604857-2806662f-f943-487a-8506-042442488bb8.png)
+![image](https://user-images.githubusercontent.com/67058000/186604944-fa5c1258-fd32-4860-a797-40c684ab700b.png)
 
    
  <br>
