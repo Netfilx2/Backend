@@ -124,14 +124,12 @@
 	예를 들어 Member의 정보를 관여하는 패키지를 구성한다면, member패키지 안에 domain, service, dto, repository가 포함되어 구성되게 된다. 
 	프로젝트가 커질수록 패키지 안의 클래스 수가 증가하기 때문에 기능별 구성이 재사용성이 좋고 Package Principle을 잘 지키기는 이점이 있어, 이러한 방식으로 정리를 하였음.
 ![image](https://user-images.githubusercontent.com/67058000/186604944-fa5c1258-fd32-4860-a797-40c684ab700b.png)
-
-   
  <br>
  <br>
  <br>
 
 </details>
- 
+
 
 #### 2. 좋아요 기능
 	
@@ -140,8 +138,9 @@
 <div markdown="1">
 	 <br>
  
-      - - ERD를 참고하여 작성했지만 연관관계, oneTomany와 manyToOne에 대한 각각 이해가 부족해, 에러가 발생하였음 
-	![image](https://user-images.githubusercontent.com/67058000/186609434-4573b461-36ca-4158-b062-9f04fd0fd500.png)
+      - - ERD를 참고하여 작성했지만 연관관계, oneTomany와 manyToOne에 대한 각각 이해가 부족해, 에러가 발생하였음
+![image](https://user-images.githubusercontent.com/67058000/186610246-87c00deb-eafe-4e1c-af51-776e00095245.png)
+
 
  
 <br>  
