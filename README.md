@@ -350,22 +350,6 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
  <br>
 </details>
 
-#### 4. 하나 더 적자 
-<details>
-<summary>해결방안</summary>
-<div markdown="1">
- <br>
- 
- 하나 더 적자!
- <br>
- <br>
-
-</details>
-
-
-
-
-
 #### 📖 새로 적용해본 기술
 - Pagination
 - themoviedb오픈API 
