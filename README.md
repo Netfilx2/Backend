@@ -158,13 +158,196 @@
 </details>
 	
  
-#### 3. 깃허브 충돌 문제
+#### 3. Pagination시 nullpointException 발생
 <details>
 <summary>해결방안</summary>
 <div markdown="1">
  <br>
-최대한 충돌을 발생시키지 않으려고 여러 방법을 시도했는데 그냥 풀리퀘스트 하고 비교해서 처리하는게 가장 편했다!
+	최초 문제 발생
 
+- Spring으로 페이징을 공부하던 중 기본예제를 응용하여 내 프로젝트에 적용한 후 서버 시작시 바로 nullpointException 발생.
+- A.클라이언트 상태
+    - 클라이언트에 internal server error 500 발생
+- B. 서버상태
+    - videoRepository.findAll(pageable)에서 null발생.
+- c. 어플리케이션 정보
+    - DB에는 영화데이터가 정상적으로 저장되어있음.
+    - Video테이블을 사용하는 다른 기능은 정상적으로 작동함.
+    - 
+
+---
+
+## Trouble Shooting
+
+### 원인 탐색 과정
+
+1. 클라이언트는 당연히 500error가 발생 할 수 밖에 없음.
+2. DB에 정상적으로 저장되고 관련기능은 오류가 발생하지 않음
+3. 서버나 기타 여러 다른 부분에서 이상한점과 오류가 발생하지 않음
+4. videoRepository.findAll(pageable) 부분에서만 nullpointException 이 발생함.
+- 따라서 내가 가져온 예제 코드가 잘못된 코드라고 판단함.
+
+```java
+ @GetMapping("/video/pagination")
+    public ResponseEntity MoviePagination(final Pageable pageable) {
+        Page<Video> videos =
+        videoRepository.findAll(pageable);
+        return new ResponseEntity<>(posts,HttpStatus.OK);
+    }
+```
+
+```java
+@Repository
+public interface VideoRepository extends JpaRepository<Video, Long> {
+
+   }
+```
+
+### 원인 파악
+
+1. DB에서 해당 데이터 전부를 가져온다.
+2. 가져온 데이터를 요청받은 기준으로 분류한다(Sort) --> null이됨.
+3. 분류한 데이터를 비즈니스로직에서 받아서 다시 컨트롤러로 전송한다.
+4. 컨트롤러에서 클라이언트로 페이징한 데이터를 응답한다.
+- 2번에서 문제가 발생함.
+
+### 문제가 발생한 이유.
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/84d67f9a-78ef-4c6e-a2b0-2f80ac160bca/Untitled.png)
+
+- JpaRepository를 상속받은 Repository는 페이징관련 Repository도 상속받아서 db에서 가져올때 페이징한 데이터를 분류해서 가져올 수 있다.
+- 그런데 나는 Pageable만 사용했는데 이 Pageable만 사용했지 해당 분류내용을 내가 지정하지 않았던 것이다.
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1fb1b063-1703-4bee-9af9-28ed6a1a99f5/Untitled.png)
+
+- 아...
+- 따라서 해당 분류된 내용을 지정하지 않았으니 null이 되고 nullpointException이 발생한 것이었다.
+
+### 문제 해결
+
+- Pageable의 값을 지정해주기 위해 각 데이터값을 요청받음
+
+```java
+@GetMapping("/video/pagination")
+    public ResponseDto<?> getPaging(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sortBy") String sortBy,
+            @RequestParam("isAsc") boolean isAsc
+
+    ) {
+        page = page - 1;
+        return pagingService.getPagenation(page, size,sortBy,isAsc);
+    }
+```
+
+• 참고 : @RequestParam("sortBy") String sortBy 이부분 DESC나 ASC와 같이 OrderBy가 아니라 id, title과 같은 분류기준이다.
+
+```java
+ @Transactional
+    public ResponseDto<?> getPagenation(int page, int size, String sortBy, boolean isAsc) {
+
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size,sort);
+        Page<Video> videos = videoRepository.findAll(pageable);
+
+        List<VideoResponseDto> videoResponseDtoList = new ArrayList<>();
+
+        for (Video video : videos){
+
+            videoResponseDtoList.add(
+                    VideoResponseDto.builder()
+                            .id(video.getId())
+                            .title(video.getTitle())
+                            .poster_path(video.getPosterPath())
+                            .overview(video.getOverview())
+                            .first_date(video.getRelease_date())
+                            .grade(video.getPopularity())
+                            .youtubePath(video.getYoutubePath())
+                            .backdrop_path(video.getBackdrop_path())
+                            .homepage(video.getHomepage())
+                            .likeCnt(video.getLikeCnt())
+                            .build()
+            );
+
+        }
+
+        return ResponseDto.success(videoResponseDtoList);
+
+    }
+```
+
+• 마지막으로 Repository에서도 정의 해주어야 한다. 그래야 해당데이터를 가져와서 분류해서 데이터를 전달해준다.
+
+```java
+@Repository
+public interface VideoRepository extends JpaRepository<Video, Long> {
+
+    Page<Video> findAll(Pageable pageable);
+}
+```
+
+# 해결
+
+포스트맨에서 http://localhost:8080/video/pagination?page=1&size=3&sortBy=id&isAsc=true 
+
+ 
+
+```json
+{
+    "statusCode": 200,
+    "msg": "OK",
+    "data": [
+        {
+            "id": 2,
+            "title": "드래곤볼 슈퍼: 슈퍼 히어로",
+            "poster_path": "https://image.tmdb.org/t/p/w500/uohymzBVaIYjbnoQstbnlia6ZPJ.jpg",
+            "overview": "2018년에 개봉한 에 이은  시리즈의 두 번째 영화",
+            "first_date": "2022-06-11",
+            "grade": 7195.285,
+            "youtubePath": "https://www.youtube.com/embed/GD8nCSr54PA?autoplay=1&mute=1",
+            "backdrop_path": "https://image.tmdb.org/t/p/w500/ugS5FVfCI3RV0ZwZtBV3HAV75OX.jpg",
+            "homepage": "https://www.2022dbs-global.com",
+            "likeCnt": 0
+        },
+        {
+            "id": 9,
+            "title": "토르: 러브 앤 썬더",
+            "poster_path": "https://image.tmdb.org/t/p/w500/bZLrpWM065h5bu1msUcPmLFsHBe.jpg",
+            "overview": "이너피스를 위해 자아 찾기 여정을 떠난 천둥의 신 토르. 그러나, 우주의 모든 신들을 몰살하려는 신 도살자 고르의 등장으로 토르의 안식년 계획은 산산조각 나버린다. 토르는새로운 위협에 맞서기 위해, 킹 발키리, 코르그, 그리고 전 여자친구 제인과 재회하게 되는데. 그녀가 묠니르를 휘두르는 마이티 토르가 되어 나타나 모두를 놀라게 한다. 이제, 팀 토르는 고르의 복수에 얽힌 미스터리를 밝히고 더 큰 전쟁을 막기 위한 전 우주적 스케일의 모험을 시작하는데...",
+            "first_date": "2022-07-06",
+            "grade": 7623.514,
+            "youtubePath": "https://www.youtube.com/embed/Go8nTmfrQd8?autoplay=1&mute=1",
+            "backdrop_path": "https://image.tmdb.org/t/p/w500/p1F51Lvj3sMopG948F5HsBbl43C.jpg",
+            "homepage": "https://www.marvel.com/movies/thor-love-and-thunder",
+            "likeCnt": 0
+        },
+        {
+            "id": 15,
+            "title": "프레이",
+            "poster_path": "https://image.tmdb.org/t/p/w500/eicYAopFKOL3orcNTJZ4TGtZQQ1.jpg",
+            "overview": "300년 전 아메리카, 용맹한 전사를 꿈꾸는 원주민 소녀 나루는 갑작스러운 곰의 습격으로 절체절명의 위기에 놓인 순간, 정체를 알 수 없는 외계 포식자 프레데터를 목격하게 된다.  자신보다 강한 상대를 향한 무자비한 사냥을 시작한 프레데터. 최첨단 기술과 무기로 진화된 외계 포식자 프레데터의 위협이 점점 다가오고 나루는 부족을 지키기 위해 자신만의 기지와 무기로 생존을 건 사투를 시작하는데…",
+            "first_date": "2022-08-02",
+            "grade": 5763.164,
+            "youtubePath": "https://www.youtube.com/embed/wZ7LytagKlc?autoplay=1&mute=1",
+            "backdrop_path": "https://image.tmdb.org/t/p/w500/7ZO9yoEU2fAHKhmJWfAc2QIPWJg.jpg",
+            "homepage": "https://www.20thcenturystudios.com/movies/prey",
+            "likeCnt": 0
+        }
+    ]
+}
+```
+
+## Retrospection
+
+- 페이징의 구조 및 작동방식 참고
+    - [Spring Boot] JPA + Pageable 을 이용한 페이징 처리  [http://devstory.ibksplatform.com/2020/03/spring-boot-jpa-pageable.html](http://devstory.ibksplatform.com/2020/03/spring-boot-jpa-pageable.html)
+    - 스프링부트 검색, 페이징처리 하기 Pageable
+    - [https://gonyda.tistory.com/15](https://gonyda.tistory.com/15)
+    - [Spring] Spring Data JPA에서 Paging 간단하게 구현하는 법
+    - [https://devlog-wjdrbs96.tistory.com/414](https://devlog-wjdrbs96.tistory.com/414)
+    - 스파르타 코딩클럽 스프링 심화 4주차 강의자료
  <br>
  <br>
 </details>
