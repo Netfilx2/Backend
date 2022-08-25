@@ -25,7 +25,7 @@
 ### 😎 백엔드 팀원 소개
 이름 | 깃허브 주소 |
 ---|---|
-박민준	| 
+박민준 |	https://github.com/pmjn1025 
 류지우 |	https://github.com/ryujiwoo184
 한동훈 | https://github.com/hdonghun
 
@@ -139,7 +139,8 @@
 <summary>해결방안</summary>
 <div markdown="1">
  <br>
-CORS설정 내역
+
+ERD를 참고하여 작성했지만 연관관계, oneTomany와 manyToOne에 대한 각각 이해가 부족해, 에러가 발생하였음
  <br>
  
  
