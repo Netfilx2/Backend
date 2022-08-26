@@ -1,4 +1,4 @@
-package com.sparta.clonecoding_unite_00.movie.utils;
+package com.sparta.clonecoding_unite_00.movie.service.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -14,9 +14,11 @@ import com.sparta.clonecoding_unite_00.movie.dto.videoDto.VideoDetailResponseDto
 import com.sparta.clonecoding_unite_00.movie.dto.videoDto.VideoResponseDto;
 import com.sparta.clonecoding_unite_00.movie.repository.SmallCategoryRepository;
 import com.sparta.clonecoding_unite_00.movie.repository.VideoRepository;
-import com.sparta.clonecoding_unite_00.movie.utils.AllGenre;
-import com.sparta.clonecoding_unite_00.movie.utils.DramaGenre;
-import com.sparta.clonecoding_unite_00.movie.utils.MovieGenre;
+
+import com.sparta.clonecoding_unite_00.movie.service.utils.AllGenre;
+import com.sparta.clonecoding_unite_00.movie.service.utils.DramaGenre;
+
+import com.sparta.clonecoding_unite_00.movie.service.utils.MovieGenre;
 import com.sparta.clonecoding_unite_00.utils.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

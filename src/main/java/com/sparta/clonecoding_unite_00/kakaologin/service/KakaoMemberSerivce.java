@@ -179,6 +179,8 @@ public class KakaoMemberSerivce {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
+
+
 //    @Transactional(readOnly = true)
 //    public KakaoMember isPresentLoginId(String nickname) {
 //        Optional<KakaoMember> optionalLoginId = kakaomemberRepository.findByLoginId(nickname);
@@ -289,5 +291,8 @@ public class KakaoMemberSerivce {
 //        System.out.println("카카오 사용자 정보: " + id + ", " + nickname + ", " + loginId);
 //        return new KakaoUserInfoDto(id, nickname, loginId);
 //    }
+
+
+
 
 }
